@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mango-web
+  labels:
+    app: mango
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mango
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: mango
+        tier: web
+    spec:
+      containers:
+        - name: web
+          image: mango-web:latest
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: mango-config
+            - secretRef:
+                name: mango-secret
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10

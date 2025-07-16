@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mango-config
+data:
+  DJANGO_SETTINGS_MODULE: app.settings
+  DEBUG: "False"
+  ALLOWED_HOSTS: "mango.local,localhost"
+  POSTGRES_HOST: postgres
+  POSTGRES_PORT: "5432"
+  REDIS_URL: redis://redis:6379/0

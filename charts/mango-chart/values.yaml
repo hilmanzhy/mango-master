@@ -1,0 +1,22 @@
+image:
+  repository: mango-web
+  tag: latest
+
+workerImage:
+  repository: mango-worker
+  tag: latest
+
+replicaCount: 2
+
+env:
+  DJANGO_SETTINGS_MODULE: app.settings
+  DEBUG: "False"
+  ALLOWED_HOSTS: mango.local,localhost
+  POSTGRES_DB: mango_db
+  POSTGRES_USER: mango_user
+  POSTGRES_PASSWORD: mango_pass
+  REDIS_URL: redis://redis:6379/0
+
+ingress:
+  enabled: true
+  host: mango.local
